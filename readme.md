@@ -1,12 +1,12 @@
-# Web app generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-webapp.png?branch=master)](http://travis-ci.org/yeoman/generator-webapp)
+# Coffeescript based web app generator
 
-Yeoman generator that scaffolds out a front-end web app.
+Same as the [standard webapp generator](https://github.com/yeoman/generator-webapp) except all scripts are now coffeescript.
 
 
 ## Getting Started
 
-- Install: `npm install -g generator-webapp`
-- Run: `yo webapp`
+- Install: `npm install -g nleclerc/generator-webapp-coffee`
+- Run: `yo webapp-coffee`
 - Run `grunt` for building and `grunt server` for preview
 
 

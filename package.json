@@ -1,22 +1,23 @@
 {
-  "name": "generator-webapp",
-  "version": "0.2.7",
-  "description": "Scaffold out a front-end web app",
+  "name": "generator-webapp-coffee",
+  "version": "0.1.0",
+  "description": "Scaffold out a front-end coffescript web app",
   "keywords": [
     "yeoman-generator",
     "web",
     "app",
     "front-end",
     "h5bp",
-    "modernizr"
+    "modernizr",
+    "coffeescript"
   ],
-  "homepage": "https://github.com/yeoman/generator-webapp",
-  "bugs": "https://github.com/yeoman/generator-webapp/issues",
-  "author": "Chrome Developer Relations",
+  "homepage": "https://github.com/nleclerc/generator-webapp-coffee",
+  "bugs": "https://github.com/nleclerc/generator-webapp-coffee/issues",
+  "author": "Nicolas Leclerc",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/yeoman/generator-webapp.git"
+    "url": "git://github.com/nleclerc/generator-webapp-coffee.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"
@@ -33,7 +34,7 @@
     "mocha": "~1.12.0"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
   "licenses": [
