@@ -139,15 +139,18 @@ AppGenerator.prototype.writeIndex = function writeIndex() {
   this.indexFile = this.engine(this.indexFile, this);
 
   if (!this.includeRequireJS) {
-    this.indexFile = this.appendScripts(this.indexFile, 'scripts/main.js', [
-      'bower_components/jquery/jquery.js',
-      'scripts/main.js'
-    ]);
+    this.indexFile = this.appendFiles({
+      html: this.indexFile,
+      fileType: 'js',
+      optimizedPath: 'scripts/main.js',
+      sourceFileList: ['bower_components/jquery/jquery.js','scripts/main.js'],
+      searchPath: '.tmp'
+    });
 
     this.indexFile = this.appendFiles({
       html: this.indexFile,
       fileType: 'js',
-      optimizedPath: 'scripts/coffee.js',
+      optimizedPath: 'scripts/hello.js',
       sourceFileList: ['scripts/hello.js'],
       searchPath: '.tmp'
     });
@@ -209,15 +212,13 @@ AppGenerator.prototype.requirejs = function requirejs() {
   });
 
   // add a basic amd module
-  this.write('app/scripts/app.js', [
-    '/*global define */',
-    'define([], function () {',
-    '    \'use strict\';\n',
-    '    return \'\\\'Allo \\\'Allo!\';',
-    '});'
+  this.write('app/scripts/app.coffee', [
+    '# global define',
+    'define [], ()->',
+    '    \'\\\'Allo \\\'Allo!\'',
   ].join('\n'));
 
-  this.template('require_main.js', 'app/scripts/main.js');
+  this.template('require_main.coffee', 'app/scripts/main.coffee');
 };
 
 AppGenerator.prototype.app = function app() {
@@ -228,6 +229,6 @@ AppGenerator.prototype.app = function app() {
   this.write('app/index.html', this.indexFile);
   this.write('app/scripts/hello.coffee', this.mainCoffeeFile);
   if (!this.includeRequireJS) {
-    this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+    this.write('app/scripts/main.coffee', 'console.log \'\\\'Allo \\\'Allo!\'');
   }
 };

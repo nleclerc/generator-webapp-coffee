@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
         watch: {
             coffee: {
-                files: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee'],
+                files: ['<%%= yeoman.app %>/scripts/{,**/}*.coffee'],
                 tasks: ['coffee:dist']
             },
             coffeeTest: {
@@ -204,7 +204,7 @@ module.exports = function (grunt) {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
                 options: {
                     // `name` and `out` is set by grunt-usemin
-                    baseUrl: yeomanConfig.app + '/scripts',
+                    baseUrl: '.tmp/scripts',
                     optimize: 'none',
                     // TODO: Figure out how to make sourcemaps work with grunt-usemin
                     // https://github.com/yeoman/grunt-usemin/issues/30
@@ -328,6 +328,24 @@ module.exports = function (grunt) {
                 cwd: '<%%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
+            },
+            js: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>/scripts',
+                    dest: '.tmp/scripts',
+                    src: [
+                        '{,**/}*.js'
+                    ]
+                }]
+            }
+        },
+        symlink: {
+            js: {
+                dest: '.tmp/bower_components',
+                relativeSrc: '../<%%= yeoman.app %>/bower_components',
+                options: {type: 'dir'}
             }
         },<% if (includeModernizr) { %>
         modernizr: {
@@ -397,7 +415,9 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concurrent:dist',
-        'autoprefixer',<% if (includeRequireJS) { %>
+        'autoprefixer',
+        'symlink',<% if (includeRequireJS) { %>
+        'copy:js',
         'requirejs',<% } %>
         'concat',
         'cssmin',
